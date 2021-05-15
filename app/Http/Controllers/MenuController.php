@@ -95,6 +95,9 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
-        throw new \Exception('implement in coding task 3');
+        $menuItems = MenuItem::whereNull('category_id')
+        ->with("childrenMenuItem")
+        ->get();
+        return json_encode($menuItems);
     }
 }
